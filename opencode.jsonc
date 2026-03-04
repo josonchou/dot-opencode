@@ -50,16 +50,8 @@
   // LSP 服务器配置
   "lsp": {
     "json": {
-      "lsp": {
-        "command": "vscode-json-languageserver",
-        "args": ["--stdio"],
-      },
-    },
-    "jsonc": {
-      "lsp": {
-        "command": "vscode-json-languageserver",
-        "args": ["--stdio"],
-      },
+      "command": ["vscode-json-languageserver", "--stdio"],
+      "extensions": ["json", "jsonc"],
     },
   },
 }
