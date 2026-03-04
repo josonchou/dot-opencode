@@ -1,0 +1,52 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "instructions": ["AGENTS.md", "rules/*"],
+  "autoupdate": true,
+  "permission": {
+    "webfetch": "ask",
+  },
+  "plugin": [
+    // OpenCode 动态上下文修剪插件——智能管理对话上下文以优化令牌使用情况
+    // "@tarquinen/opencode-dcp",
+    // 表格渲染优化
+    "@franlol/opencode-md-table-formatter",
+    // "opencode-skills",
+    // Oh My OpenCode - 多智能体协作开发环境
+    "opencode-pty",
+    // Google Gemini 认证插件
+    // "opencode-antigravity-auth",,
+    "oh-my-opencode",
+  ],
+  "mcp": {
+    "fetch": {
+      "type": "local",
+      "command": ["npx", "mcp-fetch-server"],
+      "environment": {
+        "DEFAULT_LIMIT": "50000",
+      },
+      "enabled": false,
+    },
+    "web-search": {
+      "type": "local",
+      "command": ["npx", "open-websearch@latest"],
+      "environment": {
+        "ALLOWED_SEARCH_ENGINES": "bing,juejin,baidu,csdn,brave",
+        "DEFAULT_SEARCH_ENGINE": "bing",
+        "MODE": "stdio",
+      },
+      "enabled": true,
+    },
+    "dart": {
+      "type": "local",
+      "command": ["dart", "mcp-server", "--force-roots-fallback"],
+      "enabled": false,
+    },
+  },
+  // LSP 服务器配置
+  "lsp": {
+    "json": {
+      "command": ["vscode-json-languageservice", "--stdio"],
+      "extensions": [".json", ".jsonc"],
+    },
+  },
+}

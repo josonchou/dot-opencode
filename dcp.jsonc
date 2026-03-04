@@ -1,0 +1,45 @@
+{
+  "enabled": true,
+  "debug": false,
+  "pruningSummary": "detailed",
+  "capacity": {
+    "threshold": 0.75,
+    "emergencyThreshold": 0.90,
+    "reservedSpace": 10000,
+    "targetUsage": 0.60
+  },
+  "models": {
+    "minimax-cn/MiniMax-M2.1": {
+      "contextLimit": 200000,
+      "outputLimit": 64000,
+      "strategies": {
+        "aggressiveCompression": false,
+        "preserveRecentMessages": true,
+        "maxMessageHistory": 50
+      }
+    }
+  },
+  "strategies": {
+    "deduplication": {
+      "enabled": true,
+      "protectedTools": ["read", "grep", "glob"]
+    },
+    "supersedeWrites": {
+      "enabled": true
+    },
+    "pruneTool": {
+      "enabled": true,
+      "protectedTools": ["task", "todowrite", "bash"],
+      "nudge": {
+        "enabled": true,
+        "frequency": 8
+      }
+    },
+    "smartCompression": {
+      "enabled": true,
+      "systemMessagesToKeep": 2,
+      "recentMessagesToKeep": 10,
+      "toolHistoryStrategy": "summarize"
+    }
+  }
+}

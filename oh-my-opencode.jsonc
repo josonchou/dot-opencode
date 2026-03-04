@@ -1,0 +1,89 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/master/assets/oh-my-opencode.schema.json",
+  "claude_code": {
+    "mcp": false,
+    "commands": false,
+    "skills": false,
+    "agents": false,
+    "hooks": false,
+  },
+  // "sisyphus_agent": {
+  //   "disabled": false,
+  // },
+  // "disabled_skills": ["playwright"],
+  "disabled_mcps": ["websearch", "context7"],
+  "agents": {
+    "build": {
+      "model": "opencode/big-pickle",
+    },
+    "plan": {
+      "model": "minimax-cn/MiniMax-M2.5",
+      "temperature": 0.3,
+    },
+    "sisyphus": {
+      "model": "minimax-cn/MiniMax-M2.5",
+      "temperature": 0.3,
+      "ultrawork": {
+        "model": "github-copilot/claude-opus-4.6",
+        "variant": "max",
+      },
+    },
+    "prometheus": {
+      "model": "github-copilot/claude-opus-4.6",
+    },
+    "atlas": {
+      "model": "minimax-cn/MiniMax-M2.5",
+      "temperature": 0.3,
+      // "model": "kimi-for-coding/k2p5",
+    },
+    "metis": {
+      "model": "kimi-for-coding/k2p5",
+      "temperature": 0.3,
+    },
+    "oracle": {
+      "model": "github-copilot/gpt-5.2",
+      "variant": "high",
+    },
+    "momus": {
+      "model": "github-copilot/gpt-5.2",
+    },
+    "librarian": {
+      "model": "minimax-cn/MiniMax-M2.5",
+      "temperature": 0.3,
+    },
+    "explore": {
+      "model": "github-copilot/grok-code-fast-1",
+    },
+    "frontend-ui-ux-engineer": {
+      "model": "github-copilot/gemini-3-pro-preview",
+    },
+    "document-writer": {
+      "model": "minimax-cn/MiniMax-M2.5",
+      "temperature": 0.3,
+    },
+    "multimodal-looker": {
+      "model": "github-copilot/gemini-3-flash-preview",
+    },
+  },
+  "categories": {
+    "quick": { "model": "minimax-cn/MiniMax-M2.5", "temperature": 0.3 },
+    "unspecified-low": {
+      "model": "kimi-for-coding/k2p5",
+      "thinking": {
+        "type": "enabled",
+        "enabled": true,
+        "budgetTokens": 4096,
+      },
+      "temperature": 0.3,
+    },
+    "unspecified-high": {
+      "model": "github-copilot/claude-opus-4.6",
+      "variant": "max",
+    },
+    "visual-engineering": {
+      "model": "github-copilot/gemini-3-pro-preview",
+      "variant": "high",
+    },
+    "writing": { "model": "minimax-cn/MiniMax-M2.5", "temperature": 0.3 },
+  },
+}
