@@ -34,6 +34,11 @@
         "DEFAULT_SEARCH_ENGINE": "bing",
         "MODE": "stdio",
       },
+      "enabled": false,
+    },
+    "MiniMax": {
+      "type": "local",
+      "command": ["uvx", "minimax-coding-plan-mcp", "-y"],
       "enabled": true,
     },
     "dart": {
