@@ -5,17 +5,21 @@
   "permission": {
     "webfetch": "ask",
   },
+  "agent": {
+    "plan": {
+      "model": "github-copilot/claude-opus-4.6",
+    },
+    "build": {
+      "model": "kimi-for-coding/k2p5",
+      "temperature": 0.3,
+    },
+    "explore": {
+      "model": "minimax-cn-coding-plan/MiniMax-M2.5",
+    },
+  },
   "plugin": [
-    // OpenCode 动态上下文修剪插件——智能管理对话上下文以优化令牌使用情况
-    // "@tarquinen/opencode-dcp",
-    // 表格渲染优化
     "@franlol/opencode-md-table-formatter",
-    // "opencode-skills",
-    // Oh My OpenCode - 多智能体协作开发环境
-    "opencode-pty",
-    // Google Gemini 认证插件
-    // "opencode-antigravity-auth",,
-    "oh-my-opencode",
+    "oh-my-opencode"
   ],
   "mcp": {
     "fetch": {
