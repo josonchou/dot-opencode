@@ -12,17 +12,21 @@
   },
   "disabled_skills": ["playwright"],
   "disabled_mcps": ["websearch", "context7", "playwright"],
-  "browser_automation_engine": { "provider": "agent-browser" },
-  "tmux": {
+  "runtime_fallback": {
     "enabled": true,
-    "layout": "main-vertical",
-    "main_pane_size": 60,
-    "main_pane_min_width": 120,
-    "agent_pane_min_width": 40,
+    "notify_on_fallback": true,
   },
+  "browser_automation_engine": { "provider": "agent-browser" },
+  // "tmux": {
+  //   "enabled": true,
+  //   "layout": "main-vertical",
+  //   "main_pane_size": 60,
+  //   "main_pane_min_width": 120,
+  //   "agent_pane_min_width": 40,
+  // },
   "notification": { "force_enable": false },
   // 使用LINE#ID引用替换内置的Edit工具，以哈希锚定版本，防止过时行编辑。默认情况下处于禁用状态。
-  "hashline_edit": true,
+  "hashline_edit": false,
   "sisyphus_agent": {
     "default_builder_enabled": true,
   },
