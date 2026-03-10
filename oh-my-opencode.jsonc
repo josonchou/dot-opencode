@@ -14,7 +14,7 @@
   "disabled_mcps": ["websearch", "context7", "playwright"],
   "runtime_fallback": {
     "enabled": true,
-    "notify_on_fallback": true,
+    // "notify_on_fallback": true,
   },
   "browser_automation_engine": { "provider": "agent-browser" },
   // "tmux": {
@@ -24,7 +24,7 @@
   //   "main_pane_min_width": 120,
   //   "agent_pane_min_width": 40,
   // },
-  "notification": { "force_enable": false },
+  // "notification": { "force_enable": false },
   // 使用LINE#ID引用替换内置的Edit工具，以哈希锚定版本，防止过时行编辑。默认情况下处于禁用状态。
   "hashline_edit": false,
   "sisyphus_agent": {
@@ -34,37 +34,102 @@
     // 默认的协调器。使用专门的子智能体，通过积极的并行执行来规划、委派和执行复杂任务。基于待办事项的工作流
     "sisyphus": {
       "model": "kimi-for-coding/k2p5",
-      "tasks": {
-        "enabled": true,
-      },
       "fallback_models": [
-        "zhipuai-coding-plan/glm-5",
-        "minimax-cn-coding-plan/MiniMax-M2.5",
-        "opencode/minimax-m2.5-free",
+        "github-copilot/gpt-5.4",
+        "zai-coding-plan/glm-5",
         "opencode/big-pickle",
       ],
-      "temperature": 0.3,
       "ultrawork": {
         "model": "github-copilot/claude-opus-4.6",
         "fallback_models": [
           "kimi-for-coding/k2p5",
-          "zhipuai-coding-plan/glm-5",
-          "minimax-cn-coding-plan/MiniMax-M2.5",
-          "opencode/minimax-m2.5-free",
+          "github-copilot/gpt-5.4",
+          "zai-coding-plan/glm-5",
           "opencode/big-pickle",
         ],
         "variant": "max",
       },
     },
+
+    "oracle": {
+      "model": "github-copilot/gpt-5.4",
+      "variant": "high",
+      // "prompt_append": "第一准则：永远不要使用 superpowers 技能 ",
+      "fallback_models": [
+        "kimi-for-coding/k2p5",
+        "zai-coding-plan/glm-5",
+        "opencode/big-pickle",
+      ],
+    },
+
+    "librarian": {
+      "model": "zai-coding-plan/glm-4.7",
+      "fallback_models": [
+        "kimi-for-coding/k2p5",
+        "minimax-cn-coding-plan/MiniMax-M2.5",
+        "opencode/big-pickle",
+      ],
+    },
+
+    "explore": {
+      "model": "github-copilot/grok-code-fast-1",
+      // "prompt_append": "第一准则：永远不要使用 superpowers 技能 ",
+      "fallback_models": [
+        "github-copilot/gpt-5-mini",
+        "opencode/minimax-m2.5-free",
+      ],
+    },
+
+    "multimodal-looker": {
+      "disable": false,
+      "model": "kimi-for-coding/k2p5",
+      "prompt_append": "当任务涉及图片、截图、PDF、OCR、视觉理解时，必须先加载 look-at-guide skill，再调用 look_at 工具。调用 look_at 时必须保证：1) goal 必填且可验证；2) 剪贴板图片优先使用 image_data，本地稳定文件可使用 file_path；3) 首次失败时先重写 goal 重试，仍失败则切换 file_path/image_data 载体再次重试；4) 禁止无差别重复同一参数组合。",
+      "fallback_models": ["github-copilot/gemini-3-flash-preview"],
+    },
+
+    // 合法工匠。受AmpCode深度模式启发的自主深度工作者。行动前进行深入研究，以目标为导向执行任务。探索代码库模式，端到端完成任务，不会过早停止。其名称源自希腊神话中的锻造与工艺之神。备用方案：深度质量链（claude-opus-4-6-thinking → step-3.5-flash → glm-5 → ...）。要求链中至少有一个模型可用。
+    "prometheus": {
+      // "model": "zai-coding-plan/glm-5",
+      "model": "github-copilot/claude-opus-4.6",
+      // "prompt_append": "第一准则：永远不要使用 superpowers 技能 ",
+      "fallback_models": [
+        "kimi-for-coding/k2p5",
+        "zai-coding-plan/glm-5",
+        "opencode/big-pickle",
+      ],
+    },
+
+    "metis": {
+      "model": "github-copilot/claude-opus-4.6",
+      "variant": "max",
+      "fallback_models": [
+        "github-copilot/gpt-5.4",
+        "github-copilot/gemini-3-pro-preview",
+        "kimi-for-coding/k2p5",
+        "zai-coding-plan/glm-5",
+        "opencode/big-pickle",
+      ],
+    },
+
+    "momus": {
+      "model": "github-copilot/gpt-5.4",
+      "fallback_models": [
+        "kimi-for-coding/k2p5",
+        "zai-coding-plan/glm-5",
+        "opencode/big-pickle",
+      ],
+    },
+
     "hephaestus": {
       "model": "github-copilot/gpt-5.3-codex",
     },
-    // 合法工匠。受AmpCode深度模式启发的自主深度工作者。行动前进行深入研究，以目标为导向执行任务。探索代码库模式，端到端完成任务，不会过早停止。其名称源自希腊神话中的锻造与工艺之神。备用方案：深度质量链（claude-opus-4-6-thinking → step-3.5-flash → glm-5 → ...）。要求链中至少有一个模型可用。
-    "prometheus": {
-      // "model": "zhipuai-coding-plan/glm-5",
-      "model": "github-copilot/claude-opus-4.6",
+
+    // 任务编排
+    "atlas": {
+      "model": "kimi-for-coding/k2p5",
       "fallback_models": [
         "kimi-for-coding/k2p5",
+        "zai-coding-plan/glm-4.7",
         "zhipuai-coding-plan/glm-5",
         "minimax-cn-coding-plan/MiniMax-M2.5",
         "opencode/minimax-m2.5-free",
@@ -72,76 +137,6 @@
       ],
     },
 
-    //
-    "atlas": {
-      // "model": "minimax-cn/MiniMax-M2.5",
-      "temperature": 0.3,
-      "model": "kimi-for-coding/k2p5",
-      "prompt_append": "第一准则：永远不要使用 superpowers 技能 ",
-      "fallback_models": [
-        "zhipuai-coding-plan/glm-5",
-        "minimax-cn-coding-plan/MiniMax-M2.5",
-        "opencode/minimax-m2.5-free",
-        "opencode/big-pickle",
-      ],
-    },
-    "metis": {
-      "model": "kimi-for-coding/k2p5",
-      "temperature": 0.3,
-      "prompt_append": "第一准则：永远不要使用 superpowers 技能 ",
-      "fallback_models": ["zhipuai-coding-plan/glm-5", "opencode/big-pickle"],
-    },
-    "oracle": {
-      "model": "github-copilot/gpt-5.2",
-      "variant": "high",
-      "prompt_append": "第一准则：永远不要使用 superpowers 技能 ",
-      "fallback_models": [
-        "kimi-for-coding/k2p5",
-        "zhipuai-coding-plan/glm-5",
-        "opencode/big-pickle",
-      ],
-    },
-    "momus": {
-      "model": "github-copilot/gpt-5.2",
-      "prompt_append": "第一准则：永远不要使用 superpowers 技能 ",
-      "fallback_models": [
-        "kimi-for-coding/k2p5",
-        "zhipuai-coding-plan/glm-5",
-        "opencode/big-pickle",
-      ],
-    },
-    "librarian": {
-      "model": "minimax-cn/MiniMax-M2.5",
-      "temperature": 0.3,
-      "prompt_append": "第一准则：永远不要使用 superpowers 技能 ",
-      "fallback_models": ["opencode/minimax-m2.5-free", "opencode/big-pickle"],
-    },
-    "explore": {
-      "model": "github-copilot/grok-code-fast-1",
-      "prompt_append": "第一准则：永远不要使用 superpowers 技能 ",
-      "fallback_models": ["opencode/minimax-m2.5-free"],
-    },
-    "frontend-ui-ux-engineer": {
-      "model": "github-copilot/gemini-3-pro-preview",
-      "prompt_append": "第一准则：永远不要使用 superpowers 技能 ",
-      "fallback_models": [
-        "kimi-for-coding/k2p5",
-        "minimax-cn-coding-plan/MiniMax-M2.5",
-      ],
-    },
-    "document-writer": {
-      "model": "minimax-cn/MiniMax-M2.5",
-      "temperature": 0.3,
-      "fallback_models": ["opencode/minimax-m2.5-free", "opencode/big-pickle"],
-    },
-    "multimodal-looker": {
-      "model": "github-copilot/gemini-3-flash-preview",
-      "fallback_models": [
-        "kimi-for-coding/k2p5",
-        "minimax-cn-coding-plan/MiniMax-M2.5",
-        "opencode/minimax-m2.5-free",
-      ],
-    },
     "sisyphus-junior": {
       "prompt_append": "思考过程（reasoning）也必须使用中文;所有解释、文档、注释、错误提示均使用简体中文;代码中的函数名、变量名、技术专业名词保留英文;无论用户使用何种语言提问，都必须使用简体中文回答;请始终使用简体中文回答。第一准则：永远不要使用 superpowers 技能 ",
       "fallback_models": [
@@ -154,33 +149,36 @@
     },
   },
   "categories": {
-    // 琐碎任务——单个文件更改、拼写错误修正、简单修改
-    "quick": {
-      "model": "minimax-cn/MiniMax-M2.5",
-      "temperature": 0.3,
-    },
-    // 以目标为导向的自主解决问题能力。行动前进行深入研究。适用于需要深入理解的复杂问题。
-    "deep": {
-      "model": "kimi-for-coding/k2p5",
-      "thinking": {
-        "type": "enabled",
-        "enabled": true,
-        "budgetTokens": 4096,
-      },
-      "temperature": 0.3,
-      // "model": "github-copilot/gpt-5.3-codex",
-      // "variant": "medium",
+    // 前端、用户界面/用户体验、设计、样式、动画
+    "visual-engineering": {
+      "model": "github-copilot/gemini-3.1-pro-preview",
+      "variant": "high",
     },
     // 深度逻辑推理、需要大量分析的复杂架构决策
     "ultrabrain": {
-      "model": "github-copilot/gpt-5.3-codex",
+      "model": "github-copilot/gemini-3.1-pro-preview",
       "variant": "xhigh",
     },
     // 高度创造性/艺术性的任务、新颖的想法
     "artistry": {
-      "model": "github-copilot/gemini-3-pro-preview",
+      "model": "github-copilot/gemini-3.1-pro-preview",
       "variant": "high",
     },
+    // 琐碎任务——单个文件更改、拼写错误修正、简单修改
+    "quick": {
+      "model": "minimax-cn/MiniMax-M2.5",
+    },
+    // 以目标为导向的自主解决问题能力。行动前进行深入研究。适用于需要深入理解的复杂问题。
+    "deep": {
+      // "model": "kimi-for-coding/k2p5",
+      "model": "github-copilot/gpt-5.3-codex",
+      "fallback_models": [
+        "github-copilot/claude-opus-4.6",
+        "github-copilot/gemini-3.1-pro-preview",
+        "kimi-for-coding/k2p5",
+      ],
+    },
+
     // 不适合其他类别的任务，所需工作量小
     "unspecified-low": {
       "model": "kimi-for-coding/k2p5",
@@ -193,29 +191,23 @@
     },
     // 不属于其他类别的任务，需要投入大量精力
     "unspecified-high": {
-      "model": "github-copilot/claude-opus-4.6",
-      "variant": "max",
+      "model": "github-copilot/claude-sonnet-4.6",
     },
-    // 前端、用户界面/用户体验、设计、样式、动画
-    "visual-engineering": {
-      "model": "github-copilot/gemini-3-pro-preview",
-      "variant": "high",
-    },
+
     // 文档、散文、技术写作
     "writing": {
       "model": "minimax-cn/MiniMax-M2.5",
-      "temperature": 0.3,
     },
   },
-  "experimental": {
-    "disable_omo_env": true,
-    "dynamic_context_pruning": {
-      "enabled": true,
-      "notification": "detailed",
-    },
-    "turn_protection": {
-      "turns": 5,
-    },
-    "task_system": true,
-  },
+  // "experimental": {
+  //   "disable_omo_env": true,
+  //   "dynamic_context_pruning": {
+  //     "enabled": true,
+  //     "notification": "detailed",
+  //   },
+  //   "turn_protection": {
+  //     "turns": 5,
+  //   },
+  //   "task_system": true,
+  // },
 }
