@@ -48,6 +48,47 @@
   - 失败时必须执行自动重试策略（先重写 `goal`，再切换载体）
 - **禁止在未加载 `look-at-guide` skill 的情况下直接进行 `look_at` 调用。**
 
+### question 工具使用规范
+
+- **有多个确认点时，必须拆分为多个问题**，使用 `multiple: true` 参数
+- 禁止在一个问题描述中用编号列出多个问题让用户手动回答
+- 每个问题应该是一个独立的 `questions` 数组元素
+
+**❌ 错误示例**：
+
+```javascript
+question({
+  questions: [{
+    question: "确认一下变更范围：\n1. 字段A是否移除？\n2. 接口地址是否变化？\n3. 参数格式是否保持一致？",
+    options: [...]
+  }]
+})
+```
+
+**✅ 正确示例**：
+
+```javascript
+question({
+  multiple: true,
+  questions: [
+    {
+      question: "字段A是否已从接口中移除？",
+      options: [
+        { label: "是的，已移除", description: "新接口不再返回该字段" },
+        { label: "否，仍然保留", description: "只是截图中未显示" },
+      ],
+    },
+    {
+      question: "接口地址是否保持不变？",
+      options: [
+        { label: "保持不变", description: "继续使用原地址" },
+        { label: "需要更换", description: "请提供新地址" },
+      ],
+    },
+  ],
+});
+```
+
 ### edit 工具（首选修改方式）
 
 - 修改前必须先用 `read` 读取目标文件/范围，获取准确的 LINE#ID 标签。

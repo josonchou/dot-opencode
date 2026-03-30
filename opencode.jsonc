@@ -3,9 +3,11 @@
   "instructions": ["AGENTS.md", "rules/*"],
   "autoupdate": true,
   // "permission": {
-  //   "webfetch": "ask",
-  // },
+  //   // "webfetch": "ask",
   //
+  //
+  // },
+
   "agent": {
     "plan": {
       "model": "github-copilot/claude-opus-4.6",
@@ -18,7 +20,12 @@
       "model": "minimax-cn-coding-plan/MiniMax-M2.5",
     },
   },
-  "plugin": ["@franlol/opencode-md-table-formatter", "oh-my-opencode"],
+  "plugin": [
+    "@franlol/opencode-md-table-formatter",
+    "superpowers@git+https://github.com/obra/superpowers.git",
+    "opencode-cmux",
+    // "oh-my-opencode"
+  ],
   "mcp": {
     "fetch": {
       "type": "local",

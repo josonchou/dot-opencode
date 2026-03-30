@@ -28,12 +28,13 @@
   // 使用LINE#ID引用替换内置的Edit工具，以哈希锚定版本，防止过时行编辑。默认情况下处于禁用状态。
   "hashline_edit": false,
   "sisyphus_agent": {
-    "default_builder_enabled": true,
+    "default_builder_enabled": false,
   },
   "agents": {
     // 默认的协调器。使用专门的子智能体，通过积极的并行执行来规划、委派和执行复杂任务。基于待办事项的工作流
     "sisyphus": {
       "model": "kimi-for-coding/k2p5",
+      // "model": "opencode/mimo-v2-omni-free",
       "fallback_models": [
         "github-copilot/gpt-5.4",
         "zai-coding-plan/glm-5",
@@ -63,7 +64,7 @@
     },
 
     "librarian": {
-      "model": "zai-coding-plan/glm-4.7",
+      "model": "minimax-cn-coding-plan/MiniMax-M2.5",
       "fallback_models": [
         "kimi-for-coding/k2p5",
         "minimax-cn-coding-plan/MiniMax-M2.5",
@@ -72,12 +73,8 @@
     },
 
     "explore": {
-      "model": "github-copilot/grok-code-fast-1",
-      // "prompt_append": "第一准则：永远不要使用 superpowers 技能 ",
-      "fallback_models": [
-        "github-copilot/gpt-5-mini",
-        "opencode/minimax-m2.5-free",
-      ],
+      "model": "github-copilot/gpt-5.4-mini",
+      "fallback_models": ["opencode/minimax-m2.5-free"],
     },
 
     "multimodal-looker": {
@@ -89,6 +86,7 @@
 
     // 合法工匠。受AmpCode深度模式启发的自主深度工作者。行动前进行深入研究，以目标为导向执行任务。探索代码库模式，端到端完成任务，不会过早停止。其名称源自希腊神话中的锻造与工艺之神。备用方案：深度质量链（claude-opus-4-6-thinking → step-3.5-flash → glm-5 → ...）。要求链中至少有一个模型可用。
     "prometheus": {
+      // "model": "opencode/mimo-v2-pro-free",
       // "model": "zai-coding-plan/glm-5",
       "model": "github-copilot/claude-opus-4.6",
       // "prompt_append": "第一准则：永远不要使用 superpowers 技能 ",
@@ -100,10 +98,11 @@
     },
 
     "metis": {
-      "model": "github-copilot/claude-opus-4.6",
+      // "model": "github-copilot/claude-opus-4.6",
+      "model": "github-copilot/gpt-5.4",
       "variant": "max",
       "fallback_models": [
-        "github-copilot/gpt-5.4",
+        // "github-copilot/gpt-5.4",
         "github-copilot/gemini-3-pro-preview",
         "kimi-for-coding/k2p5",
         "zai-coding-plan/glm-5",
@@ -127,9 +126,9 @@
     // 任务编排
     "atlas": {
       "model": "kimi-for-coding/k2p5",
+      // "model": "opencode/mimo-v2-omni-free",
       "fallback_models": [
         "kimi-for-coding/k2p5",
-        "zai-coding-plan/glm-4.7",
         "zhipuai-coding-plan/glm-5",
         "minimax-cn-coding-plan/MiniMax-M2.5",
         "opencode/minimax-m2.5-free",
