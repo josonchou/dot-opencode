@@ -1,5 +1,6 @@
 {
   "$schema": "https://opencode.ai/tui.json",
+  "theme": "martina-dark",
   "keybinds": {
     "app_exit": "<leader>q,ctrl+q",
     "input_clear": "ctrl+c",
@@ -13,6 +14,21 @@
   },
   "scroll_acceleration": {
     "enabled": true
-  }
+  },
+  "plugin": [
+    [
+      "oc-plugin-rainbow",
+      {
+        "enabled": true,
+        "fg": true,
+        "bg": true,
+        "speed": 0.008,
+        "turns": 3,
+        "glow": 0.05,
+        "keybinds": {
+          "logo_splash": "ctrl+shift+r"
+        }
+      }
+    ]
+  ]
 }
-

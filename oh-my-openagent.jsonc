@@ -1,0 +1,180 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/dev/assets/oh-my-opencode.schema.json",
+  "claude_code": {
+    "mcp": false,
+    "commands": false,
+    "skills": false,
+    "agents": false,
+    "hooks": false,
+  },
+  "git_master": {
+    "commit_footer": false,
+    "include_co_authored_by": false,
+    "git_env_prefix": "GIT_MASTER=1",
+  },
+  "background_task": {
+    "staleTimeoutMs": 1200000,
+  },
+  "disabled_skills": ["playwright"],
+  "disabled_mcps": ["websearch", "context7", "playwright"],
+  "runtime_fallback": {
+    "enabled": true,
+    // "notify_on_fallback": true,
+  },
+  "browser_automation_engine": { "provider": "agent-browser" },
+  // "tmux": {
+  //   "enabled": true,
+  //   "layout": "main-vertical",
+  //   "main_pane_size": 60,
+  //   "main_pane_min_width": 120,
+  //   "agent_pane_min_width": 40,
+  // },
+  // "notification": { "force_enable": false },
+  // 使用LINE#ID引用替换内置的Edit工具，以哈希锚定版本，防止过时行编辑。默认情况下处于禁用状态。
+  "hashline_edit": false,
+  "sisyphus_agent": {
+    "default_builder_enabled": false,
+  },
+  "agents": {
+    // 默认的协调器。使用专门的子智能体，通过积极的并行执行来规划、委派和执行复杂任务。基于待办事项的工作流
+    "sisyphus": {
+      // "model": "opencode-go/mimo-v2-omni",
+      // "model": "xiaomi-token-plan-cn/mimo-v2.5",
+      "model": "opencode-go/deepseek-v4-pro",
+      "fallback_models": ["opencode-go/kimi-k2.5", "github-copilot/gpt-5.4"],
+      "ultrawork": {
+        "model": "github-copilot/claude-opus-4.6",
+      },
+    },
+
+    "oracle": {
+      "model": "github-copilot/gpt-5.4",
+      // "fallback_models": [
+      //   "opencode-go/kimi-k2.5",
+      //   "xiaomi-token-plan-cn/mimo-v2.5-pro",
+      // ],
+    },
+
+    "librarian": {
+      "model": "opencode-go/deepseek-v4-flash",
+    },
+
+    "explore": {
+      "model": "opencode-go/deepseek-v4-flash",
+      "fallback_models": ["github-copilot/gpt-5.4-mini"],
+    },
+
+    "multimodal-looker": {
+      "model": "github-copilot/gemini-3-flash-preview",
+      // "fallback_models": ["opencode-go/mimo-v2-omni"],
+    },
+
+    // 合法工匠。受AmpCode深度模式启发的自主深度工作者。行动前进行深入研究，以目标为导向执行任务。探索代码库模式，端到端完成任务，不会过早停止。其名称源自希腊神话中的锻造与工艺之神。备用方案：深度质量链（claude-opus-4-6-thinking → step-3.5-flash → glm-5 → ...）。要求链中至少有一个模型可用。
+    "prometheus": {
+      "model": "github-copilot/claude-opus-4.6",
+      // "fallback_models": ["opencode-go/mimo-v2-omni"],
+    },
+
+    "metis": {
+      "model": "github-copilot/gpt-5.4",
+      "fallback_models": ["github-copilot/gemini-3-pro-preview"],
+    },
+
+    "momus": {
+      "model": "github-copilot/gpt-5.4",
+      // "fallback_models": ["opencode-go/glm-5.1"],
+    },
+
+    "hephaestus": {
+      "model": "github-copilot/gpt-5.3-codex",
+    },
+
+    // 任务编排
+    "atlas": {
+      "model": "opencode-go/deepseek-v4-pro",
+      // "model": "opencode-go/mimo-v2.5",
+      // "model": "xiaomi/mimo-v2.5-pro",
+      // "model": "xiaomi-token-plan-cn/mimo-v2.5-pro",
+      // "fallback_models": [
+      //   "opencode-go/mimo-v2-omni",
+      //   "opencode-go/kimi-k2.5",
+      //   "opencode-go/glm-5.1",
+      // ],
+    },
+
+    "sisyphus-junior": {
+      "prompt_append": "思考过程（reasoning）也必须使用中文;所有解释、文档、注释、错误提示均使用简体中文;代码中的函数名、变量名、技术专业名词保留英文;无论用户使用何种语言提问，都必须使用简体中文回答;请始终使用简体中文回答。第一准则：永远不要使用 superpowers 技能 ",
+      // "fallback_models": [
+      //   "opencode-go/mimo-v2-omni",
+      //   "opencode-go/kimi-k2.5",
+      //   "opencode-go/glm-5.1",
+      // ],
+    },
+  },
+  "categories": {
+    // 前端、用户界面/用户体验、设计、样式、动画
+    "visual-engineering": {
+      "model": "github-copilot/gemini-3.1-pro-preview",
+    },
+    // 深度逻辑推理、需要大量分析的复杂架构决策
+    "ultrabrain": {
+      "model": "github-copilot/gemini-3.1-pro-preview",
+    },
+    // 高度创造性/艺术性的任务、新颖的想法
+    "artistry": {
+      "model": "github-copilot/gemini-3.1-pro-preview",
+    },
+    // 琐碎任务——单个文件更改、拼写错误修正、简单修改
+    "quick": {
+      "model": "opencode-go/deepseek-v4-flash",
+      // "model": "opencode-go/mimo-v2.5",
+    },
+    // 以目标为导向的自主解决问题能力。行动前进行深入研究。适用于需要深入理解的复杂问题。
+    "deep": {
+      "model": "opencode-go/deepseek-v4-pro",
+      // "model": "opencode-go/mimo-v2.5-pro",
+      // "fallback_models": [
+      //   "github-copilot/gpt-5.3-codex",
+      //   "github-copilot/claude-opus-4.6",
+      //   "github-copilot/gemini-3.1-pro-preview",
+      // ],
+    },
+
+    // 不适合其他类别的任务，所需工作量小
+    "unspecified-low": {
+      "model": "opencode-go/mimo-v2.5",
+    },
+    // 不属于其他类别的任务，需要投入大量精力
+    "unspecified-high": {
+      "model": "github-copilot/claude-opus-4.6",
+      "variant": "high",
+    },
+
+    // 文档、散文、技术写作
+    "writing": {
+      "model": "minimax-cn/MiniMax-M2.7",
+    },
+  },
+  "experimental": {
+    "disable_omo_env": true,
+    "aggressive_truncation": true,
+    "task_system": true,
+    "dynamic_context_pruning": {
+      "enabled": true,
+      "notification": "detailed",
+      "protected_tools": [
+        "task",
+        "todowrite",
+        "todoread",
+        "lsp_rename",
+        "session_read",
+        "session_write",
+        "session_search",
+      ],
+      "turn_protection": {
+        "enabled": true,
+        "turns": 5,
+      },
+    },
+  },
+}
