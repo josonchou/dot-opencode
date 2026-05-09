@@ -23,7 +23,18 @@
   "mcp": {
     "feishu-mcp": {
       "type": "remote",
-      "url": "${FEISHU_MCP_URL}",
+      "url": "{env:FEISHU_MCP_URL}",
+      "enabled": true,
+    },
+    "Framelink_Figma_MCP": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "figma-developer-mcp",
+        "--figma-api-key={env:MY_FIGMA_API_KEY}",
+        "--stdio",
+      ],
       "enabled": true,
     },
     "fetch": {
