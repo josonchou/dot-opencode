@@ -5,7 +5,7 @@
   "categories": {
     "session.start": true,
     "session.end": true,
-    "task.acknowledge": false,
+    "task.acknowledge": true,
     "task.complete": true,
     "task.error": true,
     "task.progress": false,
@@ -13,7 +13,7 @@
     "resource.limit": true,
     "user.spam": true
   },
-  "spam_threshold": 3,
+  "spam_threshold": 1,
   "spam_window_seconds": 10,
   "pack_rotation": [],
   "debounce_ms": 1000,
@@ -24,3 +24,4 @@
   "exclude_dirs": [],
   "ide_rules": []
 }
+
