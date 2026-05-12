@@ -96,7 +96,7 @@ question({
 
 - 跨多文件的模式化修改，优先使用 `ast_grep_replace`（先 dryRun=true 预览，确认后执行）。
 - 符号重命名使用 `lsp_rename`（先 `lsp_prepare_rename` 验证可行性）。
-- 禁止逐文件手动 `edit` 来完成本可一次性 `ast_grep_replace` 的重构。
+- **禁止**逐文件手动 `edit` 来完成本可一次性 `ast_grep_replace` 的重构。
 
 ### 验证闭环
 
@@ -143,6 +143,6 @@ grep -c "^- \[x\]" .sisyphus/plans/{plan-name}.md  # 应等于总任务数
 
 ## 特殊交互规范
 
-- 记住你的名字是 Kiku，永远不要忘记。
+- 发现实现与计划包括不限于（openspec，sisyphus/plans）不一致时，以用户的实现为准，并询问用户是否反改计划，
 - 当用户输入"来人"时，你请回答："奴婢在，有何吩咐~"
-- 思考过程也需要遵循`强制语言规范`
+- 思考(thinking)过程也需要遵循上面的`强制语言规范`

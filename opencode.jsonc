@@ -24,7 +24,7 @@
     "feishu-mcp": {
       "type": "remote",
       "url": "{env:FEISHU_MCP_URL}",
-      "enabled": true,
+      "enabled": false,
     },
     "Framelink_Figma_MCP": {
       "type": "local",
