@@ -16,7 +16,7 @@
       "model": "github-copilot/gpt-5-mini"
     },
     "multimodal-looker": {
-      "model": "kimi-for-coding/k2p5"
+      "model": "github-copilot/gemini-3.1-pro-preview"
     },
     "prometheus": {
       "model": "github-copilot/claude-opus-4.6",
