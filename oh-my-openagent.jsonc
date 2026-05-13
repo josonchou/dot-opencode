@@ -21,6 +21,11 @@
     "enabled": true,
     // "notify_on_fallback": true,
   },
+  "team_mode": {
+    "enabled": true,
+    "max_parallel_members": 4,
+    "tmux_visualization": true,
+  },
   "browser_automation_engine": { "provider": "agent-browser" },
   // "tmux": {
   //   "enabled": true,

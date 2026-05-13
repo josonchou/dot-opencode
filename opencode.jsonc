@@ -15,7 +15,7 @@
   },
   "plugin": [
     // "superpowers@git+https://github.com/obra/superpowers.git#latest",
-    // "opencode-cmux@latest",
+    "opencode-cmux@latest",
     "@franlol/opencode-md-table-formatter@latest",
     "@warp-dot-dev/opencode-warp@0.1.5",
     "oh-my-openagent@latest",
