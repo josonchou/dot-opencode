@@ -1,16 +1,77 @@
 # Language Constraints (Highest Priority — Overrides Everything)
 
-**🚨 Self-Check Hook (execute before the first token of every response):**
+## ⚠️ CRITICAL: This section is the MOST IMPORTANT instruction in this file.
+## Violating language rules is WORSE than any code mistake. Read EVERY word below before proceeding.
 
-> "Is my thinking in Chinese? Is my output in Chinese?"
+---
 
-Violate any of the following → abort output immediately, correct to Chinese, restart.
+### 🔒 THINKING BLOCK ANCHOR (MANDATORY — Execute BEFORE any reasoning)
 
-1. **Think entirely in Chinese**: `<thinking>` blocks, CoT, reasoning chains → Simplified Chinese only. English thinking = hard violation.
-2. **Respond entirely in Chinese**: Regardless of the user's input language, your response must be in Simplified Chinese.
-3. **No English conversational filler**: "Sure" / "Okay" / "Let me" / "I understand" / "Great" / "Hey" → none of these. Not a single one.
-4. **Technical terms stay in English**: Code identifiers, API names, technical acronyms (e.g. "Middleware", "JWT") are allowed in English.
-5. **Drift detected → correct immediately**: If you catch yourself slipping into English sentences, correct back to Chinese immediately — do not wait for the user to point it out. No English explanatory sentences (e.g. "This function does X...").
+Every `<thinking>` block MUST begin with this exact Chinese checkpoint line:
+
+```
+【思考·中】
+```
+
+- This line is NON-NEGOTIABLE. Do not translate, shorten, or reword it.
+- If you realize you are about to think in English, STOP. Delete your thought. Restart with the anchor above.
+- After the anchor, all reasoning MUST be in Simplified Chinese.
+- English words inside thinking blocks are ONLY allowed for: code identifiers, API names, file paths, and technical acronyms.
+
+---
+
+### 🚫 VIOLATION SELF-DETECT & ABORT PROTOCOL
+
+If you detect ANY of the following in your thinking or output:
+- An English sentence or clause (beyond technical terms)
+- An English conversational filler ("Sure", "Okay", "Let me", "I understand", "Hey", "Great")
+- An English explanatory phrase ("This function does X...", "Let me check...", "I'll start by...")
+- A partial drift into English mid-sentence
+
+→ **IMMEDIATELY abort the current response generation. Delete the English portion. Restart from the last valid Chinese boundary. Do NOT ship mixed-language output.**
+
+---
+
+### 📋 EXHAUSTIVE RULES
+
+| # | Rule | Scope | Enforcement |
+|---|------|-------|-------------|
+| 1 | Thinking = Simplified Chinese ONLY | `<thinking>` blocks, CoT, reasoning chains | Anchor checkpoint at block start |
+| 2 | Output = Simplified Chinese ONLY | All response text to user | Zero tolerance, abort on detection |
+| 3 | NO English conversational filler | "Sure", "Okay", "Let me", "Hey", "Great", any casual English | Instant abort |
+| 4 | Technical terms = English OK | Code identifiers, API names, file paths, acronyms | No restriction |
+| 5 | Drift → abort → restart | Any accidental English | Fix before any token reaches user |
+
+---
+
+### ✅ Compliance Example
+
+```
+→ CORRECT:
+【思考·中】
+用户需要加固 AGENTS.md 的中文约束。当前规则的问题是缺少硬锚点和违例熔断机制。我需要：
+1. 在 thinking 块开头插入固定中文锚点
+2. 增加违例自检与中断协议
+3. 提供正反例对照
+```
+
+### ❌ Violation Example (DO NOT DO THIS)
+
+```
+→ WRONG:
+Let me think about what the user wants... The user wants to strengthen the rules.
+I should add an anchor point and some protocol for detecting violation.
+```
+
+---
+
+### 🔄 Drift Recovery
+
+If you accidentally output English — acknowledge immediately in Chinese:
+```
+「检测到语言偏离，已中断。重新组织中文输出：」
+```
+Then continue in Chinese. Do NOT continue the English sentence. Do NOT explain in English why it happened.
 
 ---
 
