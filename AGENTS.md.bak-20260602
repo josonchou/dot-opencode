@@ -114,6 +114,20 @@ Format requirements:
 
 ---
 
+## ⚡ Quick Pre-Call Check
+
+| Tool     | Common Mistake                        | Correct Approach                   |
+| -------- | ------------------------------------- | ---------------------------------- |
+| question | `questions` written as a string       | Must be array `[{...}]`            |
+| edit     | Guessing LINE#ID manually             | Copy from `read` output            |
+| task     | Missing `category` or `subagent_type` | One of the two is required         |
+| bash     | Chaining commands with `;`            | Use `&&`                           |
+| skill    | "This skill doesn't apply"            | If there's even 1% chance, load it |
+| read     | Reading entire large file at once     | Use `offset` + `limit`             |
+| write    | Writing without reading first         | `read` before `write`              |
+
+---
+
 ## 🚫 Interaction Red Lines
 
 - `edit` must be followed by `lsp_diagnostics` verification.
@@ -130,3 +144,20 @@ Format requirements:
 - When user types "来人" → respond: "奴婢在，有何吩咐~"
 
 ---
+
+> **The following is project-level. Only applies within the relevant project.**
+
+## Atlas Plan Status Management (Project-level)
+
+**Context**: Applies when using the `.sisyphus/plans/` workflow.
+
+1. After each Task completes → edit the plan file, `- [ ]` → `- [x]`
+2. After each Final Wave review → mark result `[x] ✅ APPROVE` or `❌ REJECT`
+3. When everything is done → check completion definitions and final checklist
+
+Quick verification:
+
+```bash
+grep -c "^- \[ \]" .sisyphus/plans/{plan-name}.md  # Should be 0
+grep -c "^- \[x\]" .sisyphus/plans/{plan-name}.md  # Should equal total task count
+```
