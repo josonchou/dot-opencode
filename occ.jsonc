@@ -1,0 +1,223 @@
+{
+  "$schema": "https://raw.githubusercontent.com/code-yeongyu/oh-my-opencode/dev/assets/oh-my-opencode.schema.json",
+  "claude_code": {
+    "mcp": false,
+    "commands": false,
+    "skills": false,
+    "agents": false,
+    "hooks": false,
+  },
+  "i18n": {
+    "locale": "zh",
+  },
+  "git_master": {
+    "commit_footer": false,
+    "include_co_authored_by": false,
+    "git_env_prefix": "GIT_MASTER=1",
+  },
+  "background_task": {
+    "providerConcurrency": {
+      "openai": 3,
+      "opencode-go": 10,
+    },
+    "staleTimeoutMs": 1200000,
+  },
+  "disabled_skills": ["playwright"],
+  "disabled_mcps": ["websearch", "context7", "playwright"],
+  "runtime_fallback": {
+    "enabled": true,
+  },
+  // "team_mode": {
+  //   "enabled": true,
+  //   "max_parallel_members": 4,
+  //   "tmux_visualization": true,
+  // },
+  "browser_automation_engine": {
+    "provider": "agent-browser",
+  },
+  "hashline_edit": false,
+  "sisyphus_agent": {
+    "default_builder_enabled": false,
+  },
+  "agents": {
+    // 持续推进大工程的主导者
+    "sisyphus": {
+      // "displayName": "愚公",
+      // "displayName": "丞相",
+      // "model": "xiaomi-token-plan-cn/mimo-v2.5-pro",
+      "model": "github-copilot/claude-opus-4.8",
+      "fallback_models": [
+        "opencode-go/kimi-k2.7-code",
+        "opencode-go/kimi-k2.6",
+        "opencode-go/glm-5.2",
+        "openai/gpt-5.5",
+      ],
+      // "ultrawork": {
+      //   "model": "openai/gpt-5.5",
+      //   //
+      // },
+    },
+
+    // 高层顾问，重大判断
+    "oracle": {
+      // "displayName": "鬼谷",
+      // "displayName": "太傅",
+      "model": "openai/gpt-5.5",
+      "fallback_models": ["opencode-go/glm-5.2"],
+    },
+
+    // 掌典籍、校勘、文献检索
+    "librarian": {
+      // "displayName": "文曲",
+      // "displayName": "校书",
+      "model": "xiaomi-token-plan-cn/mimo-v2.5",
+      "fallback_models": ["opencode-go/mimo-v2.5", "opencode-go/qwen3.5-plus"],
+    },
+
+    // 四处巡察、快速摸排
+    "explore": {
+      // "displayName": "风伯",
+      // "displayName": "巡检",
+      "model": "openai/gpt-5.4-mini-fast",
+      "fallback_models": ["openai/gpt-5.4-mini", "opencode-go/minimax-m3"],
+      // "model": "opencode-go/deepseek-v4-flash",
+    },
+
+    // 图像、截图、视觉判读
+    "multimodal-looker": {
+      // "displayName": "画嫘",
+      // "displayName": "司天监",
+      "model": "openai/gpt-5.5",
+      "fallback_models": ["opencode-go/kimi-k2.7-code"],
+    },
+
+    // 谋划、授策、先想后做
+    "prometheus": {
+      // "displayName": "玄女",
+      // "displayName": "中书",
+      "model": "openai/gpt-5.5",
+      "fallback_models": ["opencode-go/kimi-k2.7-code", "opencode-go/glm-5.2"],
+      // "model": "xiaomi-token-plan-cn/mimo-v2.5-pro",
+    },
+
+    // 查漏补缺，抓歧义
+    "metis": {
+      // "displayName": "白泽",
+      // "displayName": "补阙",
+      // "model": "github-copilot/claude-sonnet-4.6",
+      "model": "openai/gpt-5.5",
+      "fallback_models": ["openai/gpt-5.4", "opencode-go/glm-5.2"],
+    },
+
+    // 审核纠错、挑错把关
+    "momus": {
+      // "displayName": "判官",
+      // "displayName": "御史",
+      "model": "openai/gpt-5.5",
+      "fallback_models": ["opencode-go/glm-5.2"],
+    },
+
+    // 工匠型、攻坚型执行者
+    "hephaestus": {
+      // "displayName": "鲁班",
+      // "displayName": "将作",
+      "model": "openai/gpt-5.5",
+      "fallback_models": ["opencode-go/deepseek-v4-pro"],
+    },
+
+    // 调度、分派、督办执行
+    "atlas": {
+      // "displayName": "盘古",
+      // "displayName": "尚书",
+      "model": "opencode-go/deepseek-v4-pro",
+      "fallback_models": ["openai/gpt-5.4"],
+    },
+
+    // 贴身执行与承办
+    "sisyphus-junior": {
+      // "displayName": "伯益",
+      // "displayName": "长史",
+      // "prompt_append": "使用中文回答我",
+      "fallback_models": [
+        "opencode-go/deepseek-v4-pro",
+        "opencode-go/kimi-k2.7-code",
+        "openai/gpt-5.4",
+        "opencode-go/mimo-v2.5-pro",
+      ],
+    },
+  },
+  "categories": {
+    "visual-engineering": {
+      "model": "opencode-go/qwen3.6-plus",
+      "fallback_models": [
+        "xiaomi-token-plan-cn/mimo-v2.5-pro",
+        "github-copilot/gemini-3.1-pro-preview",
+      ],
+    },
+    "artistry": {
+      "model": "github-copilot/gemini-3.1-pro-preview",
+      "variant": "high",
+      "fallback_models": ["openai/gpt-5.5"],
+    },
+    "ultrabrain": {
+      "model": "openai/gpt-5.5",
+      "variant": "xhigh",
+      "fallback_models": [
+        "xiaomi-token-plan-cn/mimo-v2.5-pro",
+        "github-copilot/gemini-3.1-pro",
+        "github-copilot/claude-opus-4.8",
+      ],
+    },
+    "quick": {
+      "model": "openai/gpt-5.4-mini",
+      "fallback_models": [
+        "github-copilot/claude-haiku-4.5",
+        "opencode-go/deepseek-v4-flash",
+        "opencode-go/minimax-m3",
+      ],
+      // "model": "opencode-go/deepseek-v4-flash",
+    },
+    "deep": {
+      "model": "openai/gpt-5.5",
+      "variant": "medium",
+      "fallback_models": [
+        "xiaomi-token-plan-cn/mimo-v2.5-pro",
+        "opencode-go/mimo-v2.5-pro",
+        "opencode-go/deepseek-v4-pro",
+        "github-copilot/gpt-5.5",
+      ],
+      // "model": "xiaomi-token-plan-cn/mimo-v2.5-pro",
+    },
+    "unspecified-low": {
+      "model": "xiaomi-token-plan-cn/mimo-v2.5-pro",
+      "fallback_models": [
+        "openai/gpt-5.4-mini",
+        "github-copilot/claude-sonnet-4.6",
+        "opencode-go/deepseek-v4-pro",
+        "opencode-go/kimi-k2.7-code",
+      ],
+    },
+    "unspecified-high": {
+      "model": "openai/gpt-5.5",
+      "fallback_models": [
+        "github-copilot/claude-opus-4.8",
+        "opencode-go/kimi-k2.7-code",
+        "opencode-go/mimo-v2.5-pro",
+        "opencode-go/deepseek-v4-pro",
+      ],
+    },
+    "writing": {
+      "model": "xiaomi-token-plan-cn/mimo-v2.5-pro",
+      "fallback_models": [
+        "opencode-go/deepseek-v4-pro",
+        "opencode-go/mimo-v2.5-pro",
+        "github-copilot/gemini-3.5-flash",
+      ],
+    },
+  },
+  "experimental": {
+    // "disable_omo_env": true,
+    // "aggressive_truncation": true,
+    // "task_system": true,
+  },
+}

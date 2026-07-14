@@ -1,5 +1,5 @@
 {
-  "active_pack": "kiku",
+  "active_pack": "peon",
   "volume": 0.5,
   "enabled": true,
   "categories": {
@@ -8,15 +8,15 @@
     "task.acknowledge": true,
     "task.complete": true,
     "task.error": true,
-    "task.progress": false,
+    "task.progress": true,
     "input.required": true,
     "resource.limit": true,
     "user.spam": true
   },
-  "spam_threshold": 1,
+  "spam_threshold": 3,
   "spam_window_seconds": 10,
   "pack_rotation": [],
-  "debounce_ms": 1000,
+  "debounce_ms": 500,
   "default_pack": "kiku",
   "desktop_notifications": false,
   "pack_rotation_mode": "random",
@@ -24,4 +24,3 @@
   "exclude_dirs": [],
   "ide_rules": []
 }
-

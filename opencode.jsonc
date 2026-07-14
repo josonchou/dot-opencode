@@ -1,30 +1,49 @@
 {
   "$schema": "https://opencode.ai/config.json",
-  "instructions": ["AGENTS.md", "rules/*"],
+  "instructions": [
+    "AGENTS.md",
+    "rules/*"
+  ],
   "autoupdate": true,
   "agent": {
     "plan": {
-      "model": "github-copilot/claude-opus-4.6",
+      "model": "openai/gpt-5.6-terra"
     },
     "build": {
-      "model": "opencode-go/deepseek-v4-pro",
+      "model": "openai/gpt-5.6-terra"
     },
     "explore": {
-      "model": "opencode-go/deepseek-v4-flash",
+      "model": "openai/gpt-5.4-mini-fast",
+      "disable": true
     },
+    "general": {
+      "disable": true
+    }
   },
   "plugin": [
-    // "superpowers@git+https://github.com/obra/superpowers.git#latest",
     "opencode-cmux@latest",
-    "@franlol/opencode-md-table-formatter@latest",
     "@warp-dot-dev/opencode-warp@0.1.5",
-    "oh-my-openagent@latest",
+    "oh-my-opencode-slim"
   ],
+  "references": {
+    "omo": {
+      "path": "./omo",
+      "description": "OmO meta info"
+    },
+    "dyandriod": {
+      "path": "/Users/joson/Workspace/douyu/DouyuAllComponent",
+      "description": "The andriod project for douyu app"
+    }
+  },
   "mcp": {
+    "ardot": {
+      "url": "http://127.0.0.1:50501/api/v1/mcp",
+      "type": "remote"
+    },
     "feishu-mcp": {
       "type": "remote",
       "url": "{env:FEISHU_MCP_URL}",
-      "enabled": false,
+      "enabled": false
     },
     "Framelink_Figma_MCP": {
       "type": "local",
@@ -33,50 +52,63 @@
         "-y",
         "figma-developer-mcp",
         "--figma-api-key={env:MY_FIGMA_API_KEY}",
-        "--stdio",
+        "--stdio"
       ],
-      "enabled": true,
+      "enabled": true
     },
     "fetch": {
       "type": "local",
-      "command": ["bunx", "mcp-fetch-server"],
+      "command": [
+        "bunx",
+        "mcp-fetch-server"
+      ],
       "environment": {
-        "DEFAULT_LIMIT": "50000",
+        "DEFAULT_LIMIT": "50000"
       },
-      "enabled": false,
+      "enabled": false
     },
     "web-search": {
       "type": "local",
-      "command": ["bunx", "open-websearch@latest"],
+      "command": [
+        "bunx",
+        "open-websearch@latest"
+      ],
       "environment": {
         "ALLOWED_SEARCH_ENGINES": "bing,juejin,baidu,csdn,brave",
         "DEFAULT_SEARCH_ENGINE": "bing",
-        "MODE": "stdio",
+        "MODE": "stdio"
       },
-      "enabled": false,
+      "enabled": false
     },
     "dart": {
       "type": "local",
-      "command": ["dart", "mcp-server", "--force-roots-fallback"],
-      "enabled": false,
+      "command": [
+        "dart",
+        "mcp-server",
+        "--force-roots-fallback"
+      ],
+      "enabled": false
     },
+    "codegraph": {
+      "type": "local",
+      "command": [
+        "codegraph",
+        "serve",
+        "--mcp"
+      ],
+      "enabled": true
+    }
   },
-  // LSP 服务器配置
   "lsp": {
     "json": {
-      "command": ["vscode-json-languageserver", "--stdio"],
-      "extensions": ["json", "jsonc"],
-    },
-    // "ets-lsp": {
-    //   "command": ["ets-language-server", "--stdio"],
-    //   "extensions": ["ets", ".ets"],
-    //   "initialization": {
-    //     "ets": {
-    //       "sdkPath": "/Applications/DevEco-Studio.app/Contents/sdk/default/openharmony",
-    //       "baseSdkPath": "/Users/joson/harmony-tools/ohos_sdk",
-    //       "hmsPath": "/Applications/DevEco-Studio.app/Contents/sdk/default/hms",
-    //     },
-    //   },
-    // },
-  },
+      "command": [
+        "vscode-json-languageserver",
+        "--stdio"
+      ],
+      "extensions": [
+        "json",
+        "jsonc"
+      ]
+    }
+  }
 }
